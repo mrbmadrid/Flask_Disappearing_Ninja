@@ -7,16 +7,10 @@ def index():
 
 @app.route('/<color>')
 def ninja(color):
-	valid_ninjas = ['blue', 'red', 'orange', 'purple']
-	valid = False
-	for ninja in valid_ninjas:
-		if color.lower() == ninja:
-			valid = True
-	ninja = "static/img/"
-	if valid:
-		ninja += color.lower()+".jpg"
-	else:
-		ninja += 'notapril.jpg'
-	return render_template('ninja.html', ninja=ninja)
+	valid_color=['red','blue','orange','purple']
+	for ninja in valid_color:
+		if color == ninja:
+			return color
+	return 'april'
 
 app.run(debug=True)

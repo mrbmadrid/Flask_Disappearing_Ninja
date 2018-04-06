@@ -2,13 +2,36 @@
 <html>
 	<head>
 		<title>Dissappearing Ninjas with Flask</title>
+		<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/styles.css')}}">
 		<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/bootstrap-3.3.7-dist/css/bootstrap.min.css')}}">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	</head>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$('img').hide()
+			$('#base').show()
+			$('input').change(function(){
+				$('img').hide()
+				var color = $('input').val()
+				var route = '/'+color
+				$.get(route, function(res){
+					console.log(res)
+					$('#'+res).show();
+				})
+			})
+		});
+	</script>
 <body>
 	<div class="container">
 		<div class="row">
-			<div class="row">
-				<img src="{{url_for('static', filename='img/tmnt.png')}}"
+			<div class="col">
+				<img id="base" src="{{url_for('static', filename='img/tmnt.png')}}">
+				<img id="red" src="{{url_for('static', filename='img/red.jpg')}}">
+				<img id="blue" src="{{url_for('static', filename='img/blue.jpg')}}">
+				<img id="orange" src="{{url_for('static', filename='img/orange.jpg')}}">
+				<img id="purple" src="{{url_for('static', filename='img/purple.jpg')}}">
+				<img id="april" src="{{url_for('static', filename='img/notapril.jpg')}}">
+				Enter a turtle color: <input type="text" name="name">
 			</div>
 		</div>
 	</div>
